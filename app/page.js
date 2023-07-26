@@ -11,13 +11,13 @@ export default function Home() {
       </div>
       <div className="grid-container">
         <div className="grid-item">
-          <Image src="/image1.jpg" width={200} height={300} />
+          <Image src="/DSC07008.jpg" width={200} height={300} />
         </div>
         <div className="grid-item">
-          <Image src="/image2.jpg" width={200} height={300} />
+          <Image src="/DSC08521.jpg" width={200} height={300} />
         </div>
         <div className="grid-item">
-          <Image src="/image3.jpg" width={200} height={300} />
+          <Image src="/DSC09817.jpg" width={200} height={300} />
         </div>
         ...
       </div>
