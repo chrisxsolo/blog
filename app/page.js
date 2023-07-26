@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import styles from './page.module.css';
 import NavBar from './components/NavBar';
+import img06 from '../public/DSC07008.jpg'
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
       </div>
       <div className="grid-container">
         <div className="grid-item">
-          <Image src="/DSC07008.jpg" width={200} height={300} />
+          <Image src= {img06} width={200} height={300} />
         </div>
         <div className="grid-item">
           <Image src="/DSC08521.jpg" width={200} height={300} />
