@@ -18,7 +18,7 @@ const PhotoGallery = () => {
         // Use the index as the key for the gallery item (consider using a unique ID if possible)
         <div key={index} className={styles['gallery-item']}>
           {/* Use next/image to display the image with a specific width and height */}
-          <Image src={imageUrl} alt={`Image ${index + 1}`} width={400} height={600} />
+          <Image src={imageUrl} alt={`Image ${index + 1}`} width={200} height={300} />
         </div>
       ))}
     </div>
@@ -28,7 +28,9 @@ const PhotoGallery = () => {
 export default function Home() {
   return (
     <main>
-      <NavBar />
+      <div className={styles['navbar-container']}>
+        <NavBar />
+      </div>
       <div className={styles.title}>
         <h1>Hi. I am Chris.</h1>
       </div>

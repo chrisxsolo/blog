@@ -2,20 +2,34 @@
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 10%;
+  justify-content: center;
+  max-width: 100%; /* Allow the gallery container to use the full available width */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  margin-top: 10%;
 }
+
 
 .gallery-item {
   width: calc(25% - 10px); /* To account for margins */
   margin-bottom: 20px;
+  max-width: 200px; /* Set the maximum width for gallery items */
+  max-height: 400px; /* Set the maximum height for gallery items */
 }
 
-.img {
+/* Add a local class to make the selector pure */
+.gallery-image {
   width: 100%;
-  height: auto;
-  max-width: 200px;
-  max-height: 400px;
+  height: 100%;
   object-fit: contain;
+}
+
+/* Center the title */
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
 }
 
 @media (max-width: 992px) {
