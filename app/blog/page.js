@@ -1,8 +1,10 @@
 // pages/blog.js
-import React from 'react';
+"use client";
 import Image from 'next/image';
 import styles from './blog.module.css';
 import NavBar from '../components/NavBar';
+import React, { useState } from 'react';
+
 
 const blogPosts = [
   {
@@ -53,40 +55,59 @@ const blogPosts = [
 //   },
   // Add more blog posts to the array as needed
 ];
-
 export default function Blog() {
-  return (
-    <main>
-      <div className={styles['navbar-container']}>
+    const [expandedPosts, setExpandedPosts] = useState({});
+  
+    const handleReadMoreClick = (index) => {
+      setExpandedPosts((prevState) => ({
+        ...prevState,
+        [index]: !prevState[index],
+      }));
+    };
+  
+    return (
+        <main>
+         <div className={styles['navbar-container']}>
         <NavBar />
       </div>
       <div className={styles.title}>
         <h2>Thoughts.</h2>
       </div>
-      {blogPosts.map((post, index) => (
-        <div key={index} className={styles.blogPost}>
-          <div className={styles['blog-title']}>
-            <h3>{post.title}</h3>
-            <p className={styles['timestamp']}>{post.timestamp}</p>
+        {blogPosts.map((post, index) => (
+          <div key={index} className={styles.blogPost}>
+            <div className={styles['blog-title']}>
+              <h3>{post.title}</h3>
+              <p className={styles['timestamp']}>{post.timestamp}</p>
+            </div>
+            <div className={styles['blog-content']}>
+              {post.content.map((section, sectionIndex) => (
+                <div key={sectionIndex} className={styles['content-section']}>
+                  {section.type === 'image' && (
+                    <div className={styles['blog-img']}>
+                      {/* Use the next/image component to display the image */}
+                      <Image src={section.imageUrl} alt={`Image ${sectionIndex + 1}`} width={400} height={600} />
+                    </div>
+                  )}
+                  {section.type === 'text' && (
+                    <div className={styles['content-text']}>
+                      {/* Show only a limited amount of text or full text based on the expanded state */}
+                      <p>
+                        {expandedPosts[index] ? section.text : section.text.slice(0, 200)}
+                      </p>
+                      {section.text.length > 200 && (
+                        <div className={styles['read-more-container']}>
+                          <button onClick={() => handleReadMoreClick(index)} className={styles['read-more']}>
+                            {expandedPosts[index] ? 'Collapse' : 'Read More'}
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-          <div className={styles['blog-content']}>
-            {post.content.map((section, sectionIndex) => (
-              <div key={sectionIndex} className={styles['content-section']}>
-                {section.type === 'image' && (
-                  <div className={styles['blog-img']}>
-                    <Image src={section.imageUrl} alt={`${post.title} - Image ${sectionIndex + 1}`} width={600} height={600} />
-                  </div>
-                )}
-                {section.type === 'text' && (
-                  <div className={styles['content-text']}>
-                    <p>{section.text}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
-    </main>
-  );
-}
+        ))}
+      </main>
+    );
+  }
