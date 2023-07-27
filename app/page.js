@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import styles from './page.module.css';
 import NavBar from './components/NavBar';
-import img06 from '../public/DSC07008.jpg'
 
 const images = [
   '/DSC07008.jpg',
