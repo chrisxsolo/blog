@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import styles from './about.module.css';
 import NavBar from '../components/NavBar';
+import React from 'react';
+
 
 export default function About() {
   return (

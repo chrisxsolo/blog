@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import styles from './blog.module.css';
 import NavBar from '../components/NavBar';
+import React from 'react';
+
 
 export default function Blog() {
   return (
