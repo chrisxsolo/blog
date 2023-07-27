@@ -92,7 +92,7 @@ export default function Blog() {
                     <div className={styles['content-text']}>
                       {/* Show only a limited amount of text or full text based on the expanded state */}
                       <p>
-                        {expandedPosts[index] ? section.text : section.text.slice(0, 200)}
+                        {expandedPosts[index] ? section.text : section.text.slice(0, 400)}
                       </p>
                       {section.text.length > 200 && (
                         <div className={styles['read-more-container']}>
