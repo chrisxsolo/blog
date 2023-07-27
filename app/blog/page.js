@@ -6,10 +6,10 @@ import styles from './blog.module.css';
 import NavBar from '../components/NavBar';
 
 
-const blogPosts = [
+const initialBlogPosts = [
     {
       title: "Shoot with Nicole: Finding Balance",
-      timestamp: "2023-07-26 ",
+      timestamp: "July 26th, 2023 ",
       content: [
         {
           type: 'image',
@@ -29,6 +29,8 @@ const blogPosts = [
         // },
         // Add more content sections (image and text pairs) as needed
       ],
+      likes: 0, // Initialize the likes for this post to 0
+      
     },
   //   {
   //     title: "Second Blog Post",
@@ -54,13 +56,13 @@ const blogPosts = [
   //     ],
   //   },
     // Add more blog posts to the array as needed
+    
   ];
 
 // Define the main functional component for the Blog page
 export default function Blog() {
-    // Use state to keep track of expanded blog posts (whether the "Read More" button is clicked or not)
     const [expandedPosts, setExpandedPosts] = useState({});
-  
+    const [blogPosts, setBlogPosts] = useState(initialBlogPosts); // Replace 'initialBlogPosts' with your initial array of blog posts
     // Function to handle the click event of the "Read More" button
 const handleReadMoreClick = (index) => {
     // Toggle the expanded state for the clicked blog post using the index as a key
@@ -79,6 +81,15 @@ const handleReadMoreClick = (index) => {
       [index]: !prevState[index],
     }));
   };
+
+  const handleLikeClick = (index) => {
+    setBlogPosts((prevPosts) => {
+      const updatedPosts = [...prevPosts];
+      updatedPosts[index].likes += 1;
+      return updatedPosts;
+    });
+  };
+  
   
   
     // Return JSX for the Blog page
@@ -91,7 +102,7 @@ const handleReadMoreClick = (index) => {
   
         {/* Display the title */}
         <div className={styles.title}>
-          <h2>Thoughts.</h2>
+          <h2>My thoughts.</h2>
         </div>
   
         {/* Map through the blogPosts array to render each blog post */}
@@ -142,6 +153,16 @@ const handleReadMoreClick = (index) => {
 {/* Otherwise, if the blog post at the current index is not expanded (the 'expandedPosts' state contains a falsy value for this index), */}
 {/* display the text 'Read More' for the button, indicating that clicking it will reveal or show the rest of the content. */}
                   </button>
+
+
+  {/* Like icon and counter */}
+  <div className={styles['like-container']}>
+    <button onClick={() => handleLikeClick(index)}>
+      <img src="/like-icon.svg" alt="Like" />
+    </button>
+    <p>{post.likes} Likes</p>
+  </div>
+                  
                 </div>
               )}
             </div>
