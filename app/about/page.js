@@ -28,10 +28,8 @@ export default function About() {
           both words and images.
           <br /><br />
           Through this website, I aim to invite you into my world, offering glimpses of my
-          photographic endeavors while sharing insights and introspections on various subjects
-          close to my heart. The act of self-reflection and creative expression through
-          photography has been a transformative experience, and I hope my posts resonate with
-          you and inspire you in your own pursuits.
+          photographic endeavors while sharing insights and introspections on various subjects. The act of self-reflection and creative expression through
+          photography has been a transformative experience.
           <br /><br />
           I believe that building this website from the ground up was an invaluable learning
           experience. It allowed me to grasp the intricate workings of web development, the
