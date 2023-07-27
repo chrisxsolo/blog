@@ -37,6 +37,9 @@ export default function Home() {
       <div className={styles.title}>
         <h1>Hi. I am Chris.</h1>
       </div>
+      <div className = {styles.subtitle}> 
+      <p>I'm a bay area portrait photographer based in San Francisco, CA</p>
+      </div>
       <PhotoGallery />
     </main>
   );

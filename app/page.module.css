@@ -6,7 +6,7 @@
   justify-content: center;
   max-width: 100%; /* Allow the gallery container to use the full available width */
   overflow-x: hidden; /* Prevent horizontal scrolling */
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 
@@ -33,6 +33,16 @@
   margin-top: 10%;
 }
 
+.subtitle{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  text-align: center;
+  padding-left: 11%;
+}
+
 @media (max-width: 992px) {
   .gallery-item {
     width: calc(33.33% - 10px); /* To account for margins */
@@ -45,8 +55,14 @@
 
   .title{
     margin-top: 30%;
-
   }
+
+  .subtitle{
+    display: flex;
+    justify-content: center;
+  }
+
+
 }
 
 @media (max-width: 576px) {
