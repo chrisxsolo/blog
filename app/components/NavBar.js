@@ -8,7 +8,7 @@ const Navbar = () => {
       <nav className={styles.navbar}>
         <ul className={styles['navbar-nav']}>
           <li className={styles['nav-item']}>
-            <a href="#" className={styles['nav-link']}>
+            <a href="/" className={styles['nav-link']}>
               Home
             </a>
           </li>
