@@ -6,7 +6,7 @@ import NavBar from '../components/NavBar';
 
 const blogPosts = [
   {
-    title: "Shoot with Nicole",
+    title: "Shoot with Nicole: Finding Balance",
     timestamp: "2023-07-26 ",
     content: [
       {
