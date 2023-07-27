@@ -9,7 +9,6 @@
   margin-top: 5%;
 }
 
-
 .gallery-item {
   width: calc(25% - 10px); /* To account for margins */
   margin-bottom: 20px;
@@ -41,6 +40,13 @@
   width: 80%;
   text-align: center;
   padding-left: 11%;
+}
+
+
+.timestamp {
+  /* Style the timestamp */
+  font-size: 14px;
+  color: #888;
 }
 
 @media (max-width: 992px) {
