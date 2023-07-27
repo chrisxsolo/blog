@@ -2,7 +2,7 @@
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  gap: 10%;
+  gap: 1%;
   justify-content: center;
   max-width: 100%; /* Allow the gallery container to use the full available width */
   overflow-x: hidden; /* Prevent horizontal scrolling */
@@ -41,7 +41,11 @@
 
 @media (max-width: 768px) {
   .gallery-item {
-    width: calc(50% - 10px); /* To account for margins */
+  }
+
+  .title{
+    margin-top: 30%;
+
   }
 }
 

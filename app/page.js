@@ -7,6 +7,9 @@ const images = [
   '/DSC07008.jpg',
   '/DSC09817.jpg',
   '/DSC08521.jpg',
+  '/DSC09740-4.jpg',
+  '/DSC05402.jpg',
+  '/DSC03189.jpg',
   // Add more image URLs here
 ];
 // PhotoGallery component
