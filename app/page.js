@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import styles from './page.module.css';
 import NavBar from './components/NavBar';
-/* eslint-disable react/no-unescaped-entities */
 
 const images = [
   '/DSC07008.jpg',

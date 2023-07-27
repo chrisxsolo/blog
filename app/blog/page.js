@@ -1,4 +1,4 @@
-import Image from 'next/image';
+"use client";
 import styles from './blog.module.css';
 import NavBar from '../components/NavBar';
 import React from 'react';
