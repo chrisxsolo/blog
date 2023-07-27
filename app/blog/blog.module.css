@@ -35,13 +35,12 @@
   .blog-img{
     display: flex;
     justify-items: center;
-    padding-left: 20%;
   }
 
   .content-text{
     display: flex;
     justify-items: center;
-    padding-left: 30%;
+    padding-left: 10%;
   }
 
   .timestamp {
@@ -49,4 +48,30 @@
     font-size: 14px;
     color: #888;
     margin-top: 10px; /* Add some margin to create space between title and timestamp */
+  }
+
+
+  /* Media query for mobile devices */
+@media (max-width: 768px) {
+    .blog-images {
+    }
+
+    .content-text{
+
+    }
+  
+    .blog-img img {
+      max-width: 100%; /* Make images take up 100% of the container width on small screens */
+    }
+  }
+
+
+@media (min-width: 992px) {
+    .blog-img {
+        padding-left: 20%;
+    }
+
+    .content-text{
+        padding-left: 30%;
+    }
   }
