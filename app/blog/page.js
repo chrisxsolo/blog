@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 const blogPosts = [
   {
     title: "Shoot with Nicole: Finding Balance",
-    timestamp: "2023-07-26 ",
+    timestamp: "July 26th, 2023 ",
     content: [
       {
         type: 'image',
