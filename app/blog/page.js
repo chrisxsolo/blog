@@ -1,6 +1,6 @@
 // pages/blog.js
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from './blog.module.css';
 import NavBar from '../components/NavBar';
@@ -61,110 +61,120 @@ const initialBlogPosts = [
 
 // Define the main functional component for the Blog page
 export default function Blog() {
-    const [expandedPosts, setExpandedPosts] = useState({});
-    const [blogPosts, setBlogPosts] = useState(initialBlogPosts); // Replace 'initialBlogPosts' with your initial array of blog posts
-    // Function to handle the click event of the "Read More" button
-const handleReadMoreClick = (index) => {
-    // Toggle the expanded state for the clicked blog post using the index as a key
-    
-    // Use the setExpandedPosts function to update the state of expandedPosts.
-    // The function takes the previous state (prevState) as an argument and returns a new state object.
-    // The new state object is created using the spread operator (...prevState), which copies all the key-value pairs from the previous state.
-    // We then update the value of the index key in the new state object.
-    // The value is set to the opposite of its current value using the logical NOT operator (!prevState[index]).
-    // If the current value is true, it becomes false, and if it's false, it becomes true.
-    // This way, the function toggles the expanded state for the clicked blog post when the "Read More" button is clicked.
-    // The "index" parameter is used as the key to identify the specific blog post in the state that needs to be expanded or collapsed.
-    // The "expandedPosts" state keeps track of which blog posts are expanded (true) and which are collapsed (false).
-    setExpandedPosts((prevState) => ({
-      ...prevState,
-      [index]: !prevState[index],
-    }));
+  const [expandedPosts, setExpandedPosts] = useState({});
+  const [blogPosts, setBlogPosts] = useState(initialBlogPosts);
+  const [likedPosts, setLikedPosts] = useState({});
+  const handleLikeClick = async (index) => {
+    if (!likedPosts[index]) {
+      try {
+        const response = await fetch('/api/data', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ postId: index }),
+        });
+
+        if (response.ok) {
+          const updatedLikes = await response.json();
+
+          setBlogPosts((prevPosts) => {
+            const updatedPosts = [...prevPosts];
+            updatedPosts[index].likes = updatedLikes.likes;
+            return updatedPosts;
+          });
+
+          setLikedPosts((prevLikedPosts) => ({
+            ...prevLikedPosts,
+            [index]: true,
+          }));
+        } else {
+          console.error('Failed to add like');
+        }
+      } catch (error) {
+        console.error('Error adding like:', error);
+      }
+    }
   };
 
-  const handleLikeClick = (index) => {
-    setBlogPosts((prevPosts) => {
-      const updatedPosts = [...prevPosts];
-      updatedPosts[index].likes += 1;
-      return updatedPosts;
-    });
-  };
+  useEffect(() => {
+    // Fetch liked post data from the server and populate the likedPosts state
+    const fetchLikedPosts = async () => {
+      try {
+        const response = await fetch('/api/data', {
+          method: 'GET',
+        });
+
+        if (response.ok) {
+          const likedPostsData = await response.json();
+          const likedPostsMap = likedPostsData.reduce((acc, likedPost) => {
+            acc[likedPost.postId] = true;
+            return acc;
+          }, {});
+          setLikedPosts(likedPostsMap);
+        } else {
+          console.error('Failed to fetch liked posts');
+        }
+      } catch (error) {
+        console.error('Error fetching liked posts:', error);
+      }
+    };
+
+    fetchLikedPosts();
+  }, []);
+
   
-  
-  
-    // Return JSX for the Blog page
     return (
       <main>
-        {/* Render the NavBar component */}
         <div className={styles['navbar-container']}>
           <NavBar />
         </div>
-  
-        {/* Display the title */}
         <div className={styles.title}>
           <h2>My thoughts.</h2>
         </div>
   
-        {/* Map through the blogPosts array to render each blog post */}
         {blogPosts.map((post, index) => (
-          // Use the index as the key for the blog post
           <div key={index} className={styles.blogPost}>
-            {/* Render the blog title and timestamp */}
             <div className={styles['blog-title']}>
               <h3>{post.title}</h3>
               <p className={styles['timestamp']}>{post.timestamp}</p>
             </div>
   
-            {/* Render the blog content, which can contain text and/or images */}
             <div className={styles['blog-content']}>
               {post.content.map((section, sectionIndex) => (
-                // Use the sectionIndex as the key for each content section
                 <div key={sectionIndex} className={styles['content-section']}>
-                  {/* Check if the content section is an image */}
                   {section.type === 'image' && (
                     <div className={styles['blog-img']}>
-                      {/* Use the next/image component to display the image */}
                       <Image src={section.imageUrl} alt={`Image ${sectionIndex + 1}`} width={400} height={600} />
                     </div>
                   )}
   
-                  {/* Check if the content section is text */}
                   {section.type === 'text' && (
                     <div className={styles['content-text']}>
-                      {/* Show only a limited amount of text or full text based on the expanded state */}
-                      <p>
-                        {expandedPosts[index] ? section.text : section.text.slice(0, 400)}
-                      </p>
+                      <p>{expandedPosts[index] ? section.text : section.text.slice(0, 400)}</p>
                     </div>
                   )}
                 </div>
               ))}
   
-              {/* Check if the blog post contains more text to show */}
               {post.content.some((section) => section.type === 'text' && section.text.length > 400) && (
                 <div className={styles['read-more-container']}>
-                  {/* Render the "Read More" button */}
                   <button onClick={() => handleReadMoreClick(index)} className={styles['read-more']}>
-                    
-{/* Conditional expression to determine the text for the "Read More" button */}
-{/* If the blog post at the current index (index) is expanded (the 'expandedPosts' state contains a truthy value for this index), */}
-{expandedPosts[index] ? 'Collapse' : 'Read More'}
-{/* then display the text 'Collapse' for the button, indicating that clicking it will collapse or hide the additional content. */}
-{/* Otherwise, if the blog post at the current index is not expanded (the 'expandedPosts' state contains a falsy value for this index), */}
-{/* display the text 'Read More' for the button, indicating that clicking it will reveal or show the rest of the content. */}
+                    {expandedPosts[index] ? 'Collapse' : 'Read More'}
                   </button>
-
-
-  {/* Like icon and counter */}
-  <div className={styles['like-container']}>
-    <button onClick={() => handleLikeClick(index)}>
-      <img src="/like-icon.svg" alt="Like" />
-    </button>
-    <p>{post.likes} Likes</p>
-  </div>
-                  
                 </div>
               )}
+  
+              <div className={styles['like-container']}>
+                <button
+                  onClick={() => handleLikeClick(index)}
+                  className={styles['like-button']}
+                  disabled={likedPosts[index]}
+                >
+                  {likedPosts[index] ? 'Liked' : 'Like'}
+                </button>
+                <span className={styles['like-count']}>{post.likes}</span>
+              </div>
             </div>
           </div>
         ))}
