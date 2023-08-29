@@ -27,6 +27,11 @@ const Navbar = () => {
               Blog Page
             </a>
           </li>
+          <li className={styles['nav-item']}>
+            <a href="/submit-blog" className={styles['nav-link']}>
+              Submit a Blog!
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
