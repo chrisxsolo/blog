@@ -30,7 +30,7 @@ const PhotoGallery = () => {
 export default function Home() {
   return (
     <main>
-      
+      <NavBar></NavBar>
       <div className={styles.title}>
         <h1>Hi. I am Chris.</h1>
       </div>
