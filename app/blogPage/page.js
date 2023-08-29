@@ -2,7 +2,7 @@
 
 // This is the app/blog/page.js file that renders the blog posts
 import React, { useState, useEffect } from "react";
-import styles from "./blogPage.module.css";
+import styles from "./blogpage.module.css";
 import Image from "next/image";
 import Link from "next/link"; // Import the Link component from Next.js
 
