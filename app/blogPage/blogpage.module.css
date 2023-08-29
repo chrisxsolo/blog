@@ -1,0 +1,30 @@
+/* This is the app/blog/layout.module.css file that defines the styles for the blog layout */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* This is the app/blog/page.module.css file that defines the styles for the blog page */
+  .title {
+    text-align: center;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-gap: 20px;
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+  }
+  
+  .postTitle {
+    margin: 10px;
+  }
+  
+  .postDate {
+    margin: 10px;
+  }
+  

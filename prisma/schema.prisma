@@ -9,27 +9,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-}
-
-model Post {
-  id        Int      @id @default(autoincrement())
-  title     String
-  content   String
-  likes     Int
-  likesList Likes[]  // Renamed field for relationship
-
-  // Add any other fields you need for your blog posts
-}
-
-model Likes {
-  id         Int    @id @default(autoincrement())
-  published  Boolean @default(false)
-  postId     Int
-
-  // Define the relationship between Likes and Post
-  post       Post   @relation(fields: [postId], references: [id])
+model BlogPost {
+  id      Int     @id @default(autoincrement())
+  title   String
+  content String?
+  date String
+  likes   Int?
+  titleImage String
 }

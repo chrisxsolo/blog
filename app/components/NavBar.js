@@ -22,6 +22,11 @@ const Navbar = () => {
               About
             </a>
           </li>
+          <li className={styles['nav-item']}>
+            <a href="/blogPage" className={styles['nav-link']}>
+              Blog Page
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
